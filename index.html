@@ -7,76 +7,176 @@
     <title>Auto Ticket</title>
     <style>
       .formBox {
-        padding: 0.5rem 2rem;
+        padding: 10px; 
+        width: 75%;
+        margin-left: 40px;
+        margin-right: 25px;
+        
+
       }
+      .formBoxLong {  width: 75%;
+        min-height: 10px;
+        padding: 20px;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        column-count: 1;
+        column-fill: inherit;
+        resize: "both";
+        
+      }
+    
+      .outPut {
+        position: sticky;
+        top: 0;
+      }
+      
+    
+    
     </style>
+
+
+  
   </head>
   <body>
     <form
       id="AutoPop"
       action="#"
       method="post"
+      autocomplete="on"
     >
-     
-        
         <div class="formBox">
         <label for="taskResponseForm">Choose Task:</label>
-        <select id="task" name="task" size="">
+        <select id="task" name="task" >
           <option value="Delay In Provisioning" name="dip" >Delay In Provisioning</option>
           <option value="Net App Drive Swap" id="nApp">Net App Drive Swap</option>
           <option value="Hot Swap">Hot Swap</option>
           <option value="Network Port Upgrade">Net Work Port Speed Upgrade</option>
           <option value="Maintenance 30 minute Warning">Maintenance 30 Minute Warning</option>
           <option value="Maintenance Start">Maintenance Confirm start</option>
-
+          <option value="Lpr Removal" id="lprRemoval">LPR Removal Request</option>
+          <option value="Lpr Return" id="lprReturn">Return Component to LPR</option>
+          <option value="Schedule a Maintnence" id="Schedule">Schedule a Maintnence</option>
+          <option value="Ping Test">Ping Test</option>
         </select>
-      </div>
-      <div class="formBox">
-        
-        <label for="slTagId">SL Tag</label>
-          <input type="text" id="slTagId" placeholder="SLXXXXXX"/>
-          
-          
-        <label for="rmaId">RMA # </label>
-          <input type="text" id="rmaId" placeholder="RMA Reference Number"/>
-         
-        
-          <label for="orderId">Order # </label>
-          <input type="text" id="orderId" placeholder="Order Id"/>
-         </div>     
-          <div class="formBox">
-          <label for="hostName">Host Name: </label>
-          <input type="text" id="hostName" placeholder="Host Name"/>
-
       </div>
       
       <div class="formBox">
         
-        <b>Unique Greeting</b>
-        <br /><br />
+        <label for="slTagId">SL Tag</label>
+          <input type="text" id="slTagId" autocomplete="on" placeholder="SLXXXXXX"/>
         
-        <label for="welcome">Intro</label>
-          <input type="text" id="welcome" placeholder="Make it personal with a custom welcome statment" style="height: 50px; width: 600px;"/>
-        <br />
-        <br />
-        <br />
-        <label for="closing">Outro</label>
-          <input type="text" id="closing" placeholder="Insert Custom thank you here" style="height: 50px; width: 600px;">
-        <br />
+
+       
+        <label for="rmaId">RMA # </label>
+          <input type="text" id="rmaId" placeholder="RMA Reference Number"/>
+        
+        
+        <label for="orderId">Order # </label>
+          <input type="text" id="orderId" placeholder="Order Id"/>
+        
+       
+      <label for="dtEnd">End Time</label>
+        <input type="datetime-local" id="dtEnd"/>
+     
+      </div>     
+        
+        <div class="formBox">
+        
+        <label for="hostName">Host:</label>
+        <input type="text" id="hostName" multiple placeholder="Host Name"/>
+
+        <label for="comp">Components SN:</label>
+        <input type="text" id="comp" placeholder="Serial of Component(s)" multiple/>
+
+
+
+        <label for="newHDD">HDDX:</label>
+        <input type="text" id="newHDD" name="array[]" placeholder="Old HD SN:XXXXXX"/>
+         <input type="button" value="+ Add Drive">  
+          
+        <label for="oldHDD">HDDX:</label>
+          <input type="text" id="oldHDD" placeholder="New HD SN:XXXXXX" multiple/>
+
       </div>
       <div class="formBox">
+        
+        <label for="publicIP">Public IP:</label>
+        <input type="text" id="publicIP" placeholder="x.x.x.x"/>
+
+        <label for="privateIP">Private IP:</label>
+        <input type="text" id="privateIP" placeholder="x.x.x.x"/>
+        
+        
+        <label for="IMPIIP">IPMI IP:</label>
+        <input type="text" id="IPMIIP" placeholder="x.x.x.x"/>
+
+   
+      <label for="dtStart">Start Time</label>
+      <input type="datetime-local" id="dtStart"/>
+         
+    </div>
+      <div class="formBox">
+        <label for="downT"><b>Does this task require down Time?</b></label>
+        <select id="downT" name="downT" size="">
+          <option value="Yes" id="dtYes" >Yes</option>
+          <option value="No" id="dtNo">No</option>
+        </select>  
+        </div>
+      <br/>
+      <br/>
+
+
+      <div class="formBoxLong">
+        
+        <label for="reason"><b>Specific Reason for Dip or Additional Details.<b></label>
+        <br/>
+          <textarea type="text" id="reason"  style="height:100px; width:75%" placeholder="Reason or additional details. " ></textarea>
+          <br/>
+          <br/>
+
+          <div class="formBoxLong">
+          <label for="pings">Pings</label>
+          <br/>
+          <textarea type="text" id="pings"  style="height:100px; width:75%" placeholder="Paste ping test here" ></textarea>
+          </div>
+
+        <br />
+        <br />
+
+        <div class="formBoxLong">
+        <b>Unique Greeting</b>
+    
+
+        <br /><br />
+        <div class="formBoxLong">
+        <label for="welcome">Intro</label>
+        <br />
+          <textarea type="text" id="welcome" style="height:100px; width:75%" placeholder="Make it personal with a custom welcome statment"></textarea>
+        <br />
+        <br />
+      </div>
+        <div class="formBoxLong">
+
+        <label for="closing"><b>Outro</b></label>
+        <br />
+          <textarea type="text" id="closing"  style="height:100px; width:75%" placeholder="Insert Customf thank you here"></textarea>
+        <br/>   
+        
+      </div>
+      <div class="formBoxLong">
               
         <label for="signature">Signature</label>
-        <input type="text" id="signature" style="height: 100px; width: 350px;" placeholder="Paste signature here"/>
+        <br />
+        <textarea type="text" id="signature"  style="height:100px; width:75%" placeholder="Paste signature here"></textarea>
         <br /><br />
         <label for="sbtLevel">Choose SBT Level:</label>
         <select id="sbtLevel" name="sbt" size="0">
-          <option value="sbt1">SBTI</option>
-          <option value="sbt2">SBTII</option>
-          <option value="sbt3">SBTIII</option>
-          <option value="sbt4">Shift Lead</option></select>
-          <br />
-          
+          <option value="SBTI">SBTI</option>
+          <option value="SBTII">SBTII</option>
+          <option value="SBTIII">SBTIII</option>
+          <option value="Shift Lead">Shift Lead</option></select>
+        
+        <br />
         <br />
       </div>
 
@@ -92,8 +192,8 @@
       <input type="button" value="Generate" onclick="para() ;"/>
     </div> 
 
-    <div class="formBox">
-      <b>You Lucky dog you ;)</b>
+    <div class="outPut">
+      <b>Copy Paste and Edit If Needed.</b>
       <p id="compileAll">  </p>
       </div>
     </form>
